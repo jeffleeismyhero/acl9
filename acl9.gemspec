@@ -2,11 +2,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{acl9}
-  s.version = "0.10.1"
+  s.version = "0.10.2"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["oleg dashevskii"]
-  s.date = %q{2009-07-08}
+  s.date = %q{2009-07-09}
   s.description = %q{Role-based authorization system for Rails with a nice DSL for access control lists}
   s.email = %q{olegdashevskii@gmail.com}
   s.extra_rdoc_files = [
@@ -26,8 +26,8 @@ Gem::Specification.new do |s|
      "lib/acl9/controller_extensions/generators.rb",
      "lib/acl9/helpers.rb",
      "lib/acl9/model_extensions.rb",
+     "lib/acl9/model_extensions/acl9_subject.rb",
      "lib/acl9/model_extensions/object.rb",
-     "lib/acl9/model_extensions/subject.rb",
      "test/access_control_test.rb",
      "test/dsl_base_test.rb",
      "test/helpers_test.rb",
