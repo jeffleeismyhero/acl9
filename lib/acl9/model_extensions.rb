@@ -65,9 +65,9 @@ module Acl9
       # @see Acl9::ModelExtensions::Object
       #
       def acts_as_authorization_object(options = {})
-        subject = options[:subject_class_name] || Acl9::config[:default_subject_class_name]
-        subj_table = subject.constantize.table_name
-        subj_col = subject.underscore
+        acl9_subject = options[:subject_class_name] || Acl9::config[:default_subject_class_name]
+        subj_table = acl9_subject.constantize.table_name
+        subj_col = acl9_subject.underscore
 
         role       = options[:role_class_name] || Acl9::config[:default_role_class_name]
         role_table = role.constantize.table_name
@@ -117,12 +117,12 @@ module Acl9
       # @see Acl9::ModelExtensions::Object#accepts_role?
       # @see Acl9::ModelExtensions::Object#accepts_no_role!
       def acts_as_authorization_role(options = {})
-        subject = options[:subject_class_name] || Acl9::config[:default_subject_class_name]
+        acl9_subject = options[:subject_class_name] || Acl9::config[:default_subject_class_name]
         join_table = options[:join_table_name] || Acl9::config[:default_join_table_name] ||
-                     join_table_name(undecorated_table_name(self.to_s), undecorated_table_name(subject))
+                     join_table_name(undecorated_table_name(self.to_s), undecorated_table_name(acl9_subject))
 
-        has_and_belongs_to_many subject.demodulize.tableize.to_sym,
-          :class_name => subject,
+        has_and_belongs_to_many acl9_subject.demodulize.tableize.to_sym,
+          :class_name => acl9_subject,
           :join_table => join_table
 
         belongs_to :authorizable, :polymorphic => true
