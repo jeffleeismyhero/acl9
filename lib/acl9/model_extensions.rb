@@ -1,4 +1,4 @@
-require File.join(File.dirname(__FILE__), 'model_extensions', 'subject')
+require File.join(File.dirname(__FILE__), 'model_extensions', 'acl9_subject')
 require File.join(File.dirname(__FILE__), 'model_extensions', 'object')
 
 module Acl9
@@ -26,9 +26,9 @@ module Acl9
       #   user.has_role!(...)
       #   user.has_no_role!(...)
       #
-      #   # other functions from Acl9::ModelExtensions::Subject are made available
+      #   # other functions from Acl9::ModelExtensions::Acl9_Subject are made available
       #
-      # @see Acl9::ModelExtensions::Subject
+      # @see Acl9::ModelExtensions::Acl9_Subject
       #
       def acts_as_authorization_subject(options = {})
         role = options[:role_class_name] || Acl9::config[:default_role_class_name]
@@ -40,7 +40,7 @@ module Acl9
         cattr_accessor :_auth_role_class_name
         self._auth_role_class_name = role
 
-        include Acl9::ModelExtensions::Subject
+        include Acl9::ModelExtensions::Acl9_Subject
       end
 
       # Add role query and set methods to the class (making it an auth object class).
@@ -110,9 +110,9 @@ module Acl9
       #     acts_as_authorization_role
       #   end
       #
-      # @see Acl9::ModelExtensions::Subject#has_role!
-      # @see Acl9::ModelExtensions::Subject#has_role?
-      # @see Acl9::ModelExtensions::Subject#has_no_role!
+      # @see Acl9::ModelExtensions::Acl9_Subject#has_role!
+      # @see Acl9::ModelExtensions::Acl9_Subject#has_role?
+      # @see Acl9::ModelExtensions::Acl9_Subject#has_no_role!
       # @see Acl9::ModelExtensions::Object#accepts_role!
       # @see Acl9::ModelExtensions::Object#accepts_role?
       # @see Acl9::ModelExtensions::Object#accepts_no_role!
